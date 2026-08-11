@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "slug": "pill-dispenser",
       "title": "Smart Pill Dispenser",
       "status": "Complete",
       "statusType": "complete",
@@ -10,15 +11,42 @@
       "highlight": "Merged multiple firmware subsystems (RTC scheduling, alarm state, photoresistor detection) onto one Arduino Nano; resolved a flag-reset bug in the alarm window logic during integration.",
       "image": "images/pill-dispenser.svg",
       "specs": [
-        { "key": "MCU", "value": "Arduino Nano" },
-        { "key": "Timekeeping", "value": "DS3231 RTC" },
-        { "key": "Display", "value": "SSD1306 OLED (I2C)" },
-        { "key": "Actuation", "value": "28BYJ-48 Stepper" },
-        { "key": "Detection", "value": "Photoresistor" },
-        { "key": "Enclosure", "value": "PETG, Onshape CAD" }
-      ]
+        {
+          "key": "MCU",
+          "value": "Arduino Nano"
+        },
+        {
+          "key": "Timekeeping",
+          "value": "DS3231 RTC"
+        },
+        {
+          "key": "Display",
+          "value": "SSD1306 OLED (I2C)"
+        },
+        {
+          "key": "Actuation",
+          "value": "28BYJ-48 Stepper"
+        },
+        {
+          "key": "Detection",
+          "value": "Photoresistor"
+        },
+        {
+          "key": "Enclosure",
+          "value": "PETG, Onshape CAD"
+        }
+      ],
+      "writeup": [
+        "The goal was a dispenser that needed no daily attention beyond loading pills and setting a schedule: it wakes up, checks the time against a stored alarm, rotates a chamber to release a dose, then confirms the pill was actually removed before going quiet again.",
+        "Timekeeping runs on a DS3231 real-time clock rather than the Arduino's internal timer, since internal clocks drift over days — the DS3231's oscillator bit (EOSC) was explicitly configured to keep it powered and accurate even between resets.",
+        "The trickiest part wasn't any single component — it was merging the stepper control, alarm-state logic, potentiometer-based schedule setting, and OLED display code into one coherent state machine without variable name collisions or state conflicts. A flag-reset bug in the alarm window logic (where the 'has this dose been given' flag wasn't clearing correctly between cycles) took a full debugging session to isolate and fix.",
+        "The enclosure was fully modeled in Onshape and printed in PETG on a Bambu Lab P1S, with the lid, lid-attachment interface, and internal Arduino mount all designed as separate testable components before final assembly."
+      ],
+      "gallery": [],
+      "links": []
     },
     {
+      "slug": "solar-oven",
       "title": "Solar Oven + Custom PCB",
       "status": "Complete",
       "statusType": "complete",
@@ -28,14 +56,37 @@
       "highlight": "Laid out the schematic and board in KiCad, hand-soldered through-hole components, and verified it against the working breadboard prototype.",
       "image": "images/solar-oven.svg",
       "specs": [
-        { "key": "Sensing", "value": "DS18B20 Thermal Probe" },
-        { "key": "Display", "value": "4-Digit 7-Segment" },
-        { "key": "Driver IC", "value": "SN74HC595N Shift Reg." },
-        { "key": "PCB Tool", "value": "KiCad" },
-        { "key": "Fab", "value": "OSH Park" }
-      ]
+        {
+          "key": "Sensing",
+          "value": "DS18B20 Thermal Probe"
+        },
+        {
+          "key": "Display",
+          "value": "4-Digit 7-Segment"
+        },
+        {
+          "key": "Driver IC",
+          "value": "SN74HC595N Shift Reg."
+        },
+        {
+          "key": "PCB Tool",
+          "value": "KiCad"
+        },
+        {
+          "key": "Fab",
+          "value": "OSH Park"
+        }
+      ],
+      "writeup": [
+        "The oven itself is a passive design — layered insulating materials with a clear top to trap and concentrate solar heat, no electronics required to actually cook. The electronics layer on top is purely for monitoring: a live digital readout of internal temperature.",
+        "Temperature sensing uses a DS18B20 waterproof thermal probe, chosen for its digital output (no analog calibration drift) and tolerance for the oven's internal heat. The reading drives a 4-digit 7-segment display through an SN74HC595N shift register, which cuts the number of Arduino pins needed from what direct-driving four digits would require.",
+        "After validating the circuit on a breadboard, I moved it into KiCad to design a proper schematic and PCB layout — my first board designed completely from scratch rather than assembled point-to-point. The board was fabricated externally and hand-soldered using through-hole components, then re-tested against the original breadboard version to confirm nothing was lost in translation."
+      ],
+      "gallery": [],
+      "links": []
     },
     {
+      "slug": "pole-climbing-bot",
       "title": "Pole-Climbing Robot",
       "status": "UBC Physics Olympics 2026",
       "statusType": "complete",
@@ -45,11 +96,30 @@
       "highlight": "A loose alligator-clip connection disconnected mid-run, causing disqualification. Now I design for strain relief and connector security, not just bench-test continuity.",
       "image": "images/pole-bot.svg",
       "specs": [
-        { "key": "Drive", "value": "DC Motor + L293D H-Bridge" },
-        { "key": "Control", "value": "Arduino Uno" },
-        { "key": "Payload", "value": "170g" },
-        { "key": "Gearing", "value": "Custom 3D-printed" }
-      ]
+        {
+          "key": "Drive",
+          "value": "DC Motor + L293D H-Bridge"
+        },
+        {
+          "key": "Control",
+          "value": "Arduino Uno"
+        },
+        {
+          "key": "Payload",
+          "value": "170g"
+        },
+        {
+          "key": "Gearing",
+          "value": "Custom 3D-printed"
+        }
+      ],
+      "writeup": [
+        "UBC's Physics Olympics prebuild event set a clear physical challenge: build a robot that climbs a vertical pipe under its own power while carrying a fixed payload (a 170g phone) as fast and reliably as possible. I led my school's team through the design and build.",
+        "The drivetrain used a DC motor controlled through an L293D H-Bridge IC, run from an Arduino Uno — the H-Bridge allowed direct control over motor direction and speed rather than relying on a simpler one-direction driver. Torque was the main constraint: climbing against gravity with a real payload needed more mechanical advantage than the motor alone provided, so I designed and 3D-printed a custom gear adapter to increase torque at the cost of speed.",
+        "On competition day, the robot worked in every practice run — but an alligator-clip connection between the motor and battery worked loose during the actual run, cutting power mid-climb and disqualifying the team. It was a genuinely useful lesson: a connection that's fine on a bench, sitting still, isn't automatically fine under real vibration and handling. Strain relief and connector security are now a standard part of how I think about any build meant to actually move."
+      ],
+      "gallery": [],
+      "links": []
     }
   ]
 }
