@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "title": "Smart Pill Dispenser",
+      "status": "Complete",
+      "statusType": "complete",
+      "name": "Autonomous Pill Dispenser",
+      "description": "A fully self-contained dispenser that releases medication at a scheduled time and confirms removal before silencing — designed, built, and tested independently, including a custom 3D-printed enclosure.",
+      "highlightLabel": "Design note —",
+      "highlight": "Merged multiple firmware subsystems (RTC scheduling, alarm state, photoresistor detection) onto one Arduino Nano; resolved a flag-reset bug in the alarm window logic during integration.",
+      "image": "images/pill-dispenser.svg",
+      "specs": [
+        { "key": "MCU", "value": "Arduino Nano" },
+        { "key": "Timekeeping", "value": "DS3231 RTC" },
+        { "key": "Display", "value": "SSD1306 OLED (I2C)" },
+        { "key": "Actuation", "value": "28BYJ-48 Stepper" },
+        { "key": "Detection", "value": "Photoresistor" },
+        { "key": "Enclosure", "value": "PETG, Onshape CAD" }
+      ]
+    },
+    {
+      "title": "Solar Oven + Custom PCB",
+      "status": "Complete",
+      "statusType": "complete",
+      "name": "Passive Solar Oven with Digital Readout",
+      "description": "A passive solar oven using layered insulation and a clear top to concentrate heat, with a live temperature readout built around a custom PCB — my first designed-from-scratch board.",
+      "highlightLabel": "Design note —",
+      "highlight": "Laid out the schematic and board in KiCad, hand-soldered through-hole components, and verified it against the working breadboard prototype.",
+      "image": "images/solar-oven.svg",
+      "specs": [
+        { "key": "Sensing", "value": "DS18B20 Thermal Probe" },
+        { "key": "Display", "value": "4-Digit 7-Segment" },
+        { "key": "Driver IC", "value": "SN74HC595N Shift Reg." },
+        { "key": "PCB Tool", "value": "KiCad" },
+        { "key": "Fab", "value": "OSH Park" }
+      ]
+    },
+    {
+      "title": "Pole-Climbing Robot",
+      "status": "UBC Physics Olympics 2026",
+      "statusType": "complete",
+      "name": "Autonomous Pole-Climbing Robot",
+      "description": "Led my school's build for UBC's Physics Olympics prebuild event: a motorized robot designed to climb a pipe carrying a 170g payload, with custom-printed gearing to boost torque.",
+      "highlightLabel": "Lesson learned —",
+      "highlight": "A loose alligator-clip connection disconnected mid-run, causing disqualification. Now I design for strain relief and connector security, not just bench-test continuity.",
+      "image": "images/pole-bot.svg",
+      "specs": [
+        { "key": "Drive", "value": "DC Motor + L293D H-Bridge" },
+        { "key": "Control", "value": "Arduino Uno" },
+        { "key": "Payload", "value": "170g" },
+        { "key": "Gearing", "value": "Custom 3D-printed" }
+      ]
+    }
+  ]
+}
