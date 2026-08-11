@@ -50,7 +50,7 @@
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--border);
   }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 70px; height: auto; padding: 12px 0; }
   .logo { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 14px; letter-spacing: 0.02em; }
   .logo span { color: var(--green); }
   nav { display: flex; gap: 28px; }
