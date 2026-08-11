@@ -36,6 +36,7 @@
   a { color: inherit; }
 
   .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+  .wrap-wide { max-width: 1560px; margin: 0 auto; padding: 0 28px; }
 
   /* ---------- HEADER ---------- */
   header {
@@ -88,7 +89,13 @@
   h2.section-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; margin-top: 4px; color: #F2F1EA; }
 
   /* ---------- PROJECT SPEC CARDS ---------- */
-  .projects { display: flex; flex-direction: column; gap: 22px; }
+  .projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 22px;
+  align-items: start;
+}
+.card { container-type: inline-size; }
   .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .card-bar {
     display: flex; align-items: center; justify-content: space-between;
@@ -106,7 +113,7 @@
   .card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .card-body { padding: 28px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; }
-  @media (max-width: 720px) { .card-body { grid-template-columns: 1fr; } }
+@container (max-width: 560px) { .card-body { grid-template-columns: 1fr; } }
 
   .card-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 23px; margin-bottom: 10px; color: #F2F1EA; }
   .card-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 16px; }
@@ -179,7 +186,7 @@
 </section>
 
 <section class="section" id="projects">
-  <div class="wrap">
+   <div class="wrap-wide">
     <div class="section-head">
       <div>
         <div class="section-num">§ 01</div>
