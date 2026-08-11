@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Damon Burton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="ruler left">
+  <span class="major"></span><span></span><span></span><span class="major"></span><span></span><span></span>
+  <span class="major"></span><span></span><span></span><span class="major"></span>
+</div>
+<div class="ruler right">
+  <span class="major"></span><span></span><span></span><span class="major"></span><span></span><span></span>
+  <span class="major"></span><span></span><span></span><span class="major"></span>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">DAMON<span>_</span>BURTON</a></div>
+    <nav>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#background">Background</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="detail-header">
+    <a href="index.html#projects" class="detail-back">&larr; All Projects</a>
+    <div id="detail-content">
+      <p class="load-msg">Loading…</p>
+    </div>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="wrap footer-row">
+    <div>&copy; 2026 Damon Burton</div>
+    <div><a href="mailto:dburton8511@gmail.com">dburton8511@gmail.com</a> — Vancouver, BC</div>
+  </div>
+</footer>
+
+<script>
+async function loadProject() {
+  const container = document.getElementById('detail-content');
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  try {
+    const res = await fetch('data/projects.json');
+    if (!res.ok) throw new Error('Could not load projects.json');
+    const data = await res.json();
+    const p = data.projects.find(proj => proj.slug === id);
+
+    if (!p) {
+      container.innerHTML = `<p class="load-msg">No project found for "${id}". <a href="index.html#projects" style="color:var(--green)">Back to projects.</a></p>`;
+      return;
+    }
+
+    document.title = p.name + ' — Damon Burton';
+    container.innerHTML = renderDetail(p);
+  } catch (err) {
+    container.innerHTML = `<div class="load-msg">
+      Couldn't load project data — if you're viewing this file directly (file://),
+      that's expected: browsers block local file fetches. Run a local server
+      (e.g. <code>python3 -m http.server</code>) or view via GitHub Pages instead.
+    </div>`;
+    console.error(err);
+  }
+}
+
+function renderDetail(p) {
+  const statusClass = p.statusType === 'progress' ? 'progress' : 'complete';
+
+  const writeup = (p.writeup || []).map(para => `<p>${para}</p>`).join('');
+
+  const gallery = (p.gallery && p.gallery.length)
+    ? `<h3>Gallery</h3><div class="detail-gallery">${
+        p.gallery.map(src => `<img src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`).join('')
+      }</div>`
+    : '';
+
+  const specs = p.specs.map(s => `
+    <div class="spec-row"><span class="spec-key">${s.key}</span><span class="spec-val">${s.value}</span></div>
+  `).join('');
+
+  const links = (p.links && p.links.length)
+    ? `<div class="sidebar-block">
+         <h3>Links</h3>
+         <div class="sidebar-links">
+           ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label} <span>&rarr;</span></a>`).join('')}
+         </div>
+       </div>`
+    : '';
+
+  return `
+    <div class="detail-status">
+      <span class="status ${statusClass}">${p.status}</span>
+    </div>
+    <h1 class="detail-title">${p.name}</h1>
+    <p class="detail-sub">${p.description}</p>
+
+    <div class="detail-hero-img">
+      <img src="${p.image}" alt="${p.name}" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-writeup">
+        <div class="card-highlight" style="margin-bottom:26px;">
+          <strong>${p.highlightLabel}</strong> ${p.highlight}
+        </div>
+        ${writeup}
+        ${gallery}
+      </div>
+
+      <div class="detail-sidebar">
+        <div class="sidebar-block">
+          <h3>Specs</h3>
+          <div class="spec-table">${specs}</div>
+        </div>
+        ${links}
+      </div>
+    </div>
+  `;
+}
+
+loadProject();
+</script>
+
+</body>
+</html>
