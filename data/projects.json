@@ -9,7 +9,7 @@
       "description": "A fully self-contained dispenser that releases medication at a scheduled time and confirms removal before silencing — designed, built, and tested independently, including a custom 3D-printed enclosure.",
       "highlightLabel": "Design note —",
       "highlight": "Merged multiple firmware subsystems (RTC scheduling, alarm state, photoresistor detection) onto one Arduino Nano; resolved a flag-reset bug in the alarm window logic during integration.",
-      "image": "images/pill-dispenser-3d-model-front.jpeg",
+      "image": "images/pill-dispenser-3d-model-front.jpg",
       "specs": [
         {
           "key": "MCU",
