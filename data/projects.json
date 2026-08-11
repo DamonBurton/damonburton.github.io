@@ -120,9 +120,8 @@
       ],
       "gallery": [],
       "links": []
-    }
-  ]
-  {
+    },
+    {
       "slug": "solar-power-bank",
       "title": "Solar Power Bank",
       "status": "In Progress",
@@ -163,4 +162,6 @@
       "gallery": [],
       "links": []
     }
+  ]
+  
 }
