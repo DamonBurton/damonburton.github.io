@@ -220,3 +220,29 @@ h1.detail-title {
 }
 .sidebar-links a:hover { color: var(--green); border-color: var(--green-dim); }
 .sidebar-links a:last-child { border-bottom: none; padding-bottom: 0; }
+/* =========================================
+   MOBILE RESPONSIVENESS FIXES
+   ========================================= */
+
+/* Ensure the body doesn't stretch past the viewport width */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  /* Give text more breathing room on mobile */
+  .wrap, .wrap-wide {
+    padding: 0 16px; 
+  }
+  
+  /* Force the projects grid to shrink to fit phone screens */
+  .projects {
+    grid-template-columns: 1fr; 
+  }
+
+  /* Make sure the hero text size scales down smoothly */
+  h1.hero-title {
+    font-size: clamp(32px, 10vw, 42px);
+  }
+}
