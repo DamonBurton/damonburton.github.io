@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Burton — Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14181D;
+    --bg-card: #1B2129;
+    --grid-line: #262E37;
+    --border: #2E3742;
+    --ink: #E7E7E2;
+    --ink-soft: #93A0AA;
+    --green: #4FC1D9;
+    --green-dim: #2E8CA6;
+    --gold: #C9A227;
+    --radius: 3px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(ellipse at top, #181D24, var(--bg) 60%),
+      repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 32px);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(20, 24, 29, 0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 14px; letter-spacing: 0.02em; }
+  .logo span { color: var(--green); }
+  nav { display: flex; gap: 28px; }
+  nav a {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; text-decoration: none;
+    color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.15s;
+  }
+  nav a:hover { color: var(--green); }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 100px 0 70px; position: relative; }
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--green-dim); }
+  h1.hero-title {
+    font-family: 'Fraunces', serif; font-optical-sizing: auto; font-weight: 600;
+    font-size: clamp(42px, 7vw, 74px); line-height: 1.02; letter-spacing: -0.01em; max-width: 780px;
+    color: #F2F1EA;
+  }
+  h1.hero-title em { font-style: italic; font-weight: 500; color: var(--green); }
+  .hero-sub { margin-top: 22px; max-width: 560px; font-size: 17px; color: var(--ink-soft); }
+  .hero-links { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; text-decoration: none;
+    padding: 11px 18px; border-radius: var(--radius); border: 1px solid var(--border);
+    color: var(--ink); letter-spacing: 0.02em; transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--green); color: var(--green); }
+  .btn.primary { background: var(--green-dim); border-color: var(--green-dim); color: #0E1411; font-weight: 600; }
+  .btn.primary:hover { background: var(--green); border-color: var(--green); color: #0E1411; }
+
+  .trace { width: 100%; height: 42px; margin-top: 10px; }
+
+  /* ---------- SECTIONS ---------- */
+  .section { padding: 64px 0; border-top: 1px solid var(--border); }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 10px; }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--green); letter-spacing: 0.08em; }
+  h2.section-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; margin-top: 4px; color: #F2F1EA; }
+
+  /* ---------- PROJECT SPEC CARDS ---------- */
+  .projects { display: flex; flex-direction: column; gap: 22px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .card-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 22px; background: #10141A; border-bottom: 1px solid var(--border);
+  }
+  .card-bar-title { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+  .status { font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 3px 9px; border-radius: 12px; letter-spacing: 0.03em; }
+  .status.complete { background: rgba(79,193,217,0.15); color: var(--green); }
+  .status.progress { background: rgba(201,162,39,0.15); color: var(--gold); }
+
+  .card-image {
+    width: 100%; aspect-ratio: 800 / 300; overflow: hidden;
+    border-bottom: 1px solid var(--border); background: #10141A;
+  }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .card-body { padding: 28px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; }
+  @media (max-width: 720px) { .card-body { grid-template-columns: 1fr; } }
+
+  .card-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 23px; margin-bottom: 10px; color: #F2F1EA; }
+  .card-desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 16px; }
+  .card-highlight { border-left: 2px solid var(--green); padding-left: 14px; font-size: 14px; color: var(--ink); font-style: italic; }
+  .card-highlight strong { font-style: normal; color: var(--green); }
+
+  .spec-table { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; }
+  .spec-row { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--border); }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-key { color: var(--ink-soft); }
+  .spec-val { text-align: right; color: var(--ink); }
+
+  .load-msg { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); padding: 20px 0; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  @media (max-width: 760px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+  .skill-col { background: var(--bg-card); padding: 22px; }
+  .skill-col h3 { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-bottom: 14px; }
+  .skill-col ul { list-style: none; font-size: 13.5px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 7px; }
+  .skill-col li::before { content: "· "; color: var(--gold); font-weight: 700; }
+
+  /* ---------- EDU / AWARDS ---------- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+  .edu-item { margin-bottom: 22px; }
+  .edu-item h4 { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: #F2F1EA; }
+  .edu-item .meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--green); margin: 3px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .edu-item p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--border); padding: 40px 0 60px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft);
+  }
+  footer a { text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--green); }
+  .footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">DAMON<span>_</span>BURTON</div>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Incoming, UBC Applied Science — Engineering Physics</div>
+    <h1 class="hero-title">I build things,<br>then find out <em>why</em><br>they break.</h1>
+    <p class="hero-sub">Hardware projects spanning embedded systems, power electronics, and mechanical design — documented from first prototype to root-cause debugging.</p>
+    <div class="hero-links">
+      <a href="#projects" class="btn primary">View Projects</a>
+      <a href="#" class="btn">Résumé (PDF)</a>
+      <a href="#" class="btn">GitHub</a>
+    </div>
+  </div>
+  <svg class="trace" viewBox="0 0 980 42" preserveAspectRatio="none">
+    <path d="M0,21 L280,21 L300,6 L680,6 L700,21 L980,21" fill="none" stroke="#2E8CA6" stroke-width="1.5"/>
+    <circle cx="280" cy="21" r="3" fill="#4FC1D9"/>
+    <circle cx="700" cy="21" r="3" fill="#4FC1D9"/>
+  </svg>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 01</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+    </div>
+    <div class="projects" id="projects-container">
+      <div class="load-msg">Loading projects…</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 02</div>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>CAD</h3>
+        <ul><li>Onshape</li><li>3D Printing (Bambu P1S)</li><li>DFM / Tolerancing</li><li>Gearing & Torque</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Hardware</h3>
+        <ul><li>Arduino</li><li>THT Soldering</li><li>Power Electronics (XL6009)</li><li>Motors (Stepper / DC + H-Bridge)</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Sensors & Comms</h3>
+        <ul><li>I2C (OLED, RTC)</li><li>DS3231 / DS18B20</li><li>Shift Registers</li><li>Analog Thresholding</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Software</h3>
+        <ul><li>Java (AP CS A)</li><li>C / C++ (Embedded)</li><li>State Machine Design</li><li>KiCad (Schematic + PCB)</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="background">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 03</div>
+        <h2 class="section-title">Background</h2>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="edu-item">
+          <h4>University of British Columbia</h4>
+          <div class="meta">Sept 2026 — Jun 2030 · BASc</div>
+          <p>Incoming first-year Applied Science student, intending to specialize in Engineering Physics (ENPH).</p>
+        </div>
+        <div class="edu-item">
+          <h4>West Point Grey Academy</h4>
+          <div class="meta">Sept 2021 — Jun 2026 · Dogwood Diploma</div>
+          <p>97% average. Founded the school's Engineering Club. Member of Band, MUN, and Cross-Country.</p>
+        </div>
+      </div>
+      <div>
+        <div class="edu-item">
+          <h4>AP Scholar with Distinction</h4>
+          <div class="meta">Awards</div>
+          <p>5s on Physics C: Mechanics, Physics C: E&M, Calculus BC, Chemistry, English Literature, Computer Science A, and Statistics.</p>
+        </div>
+        <div class="edu-item">
+          <h4>Physics C Mechanics Book Award</h4>
+          <div class="meta">Awards</div>
+          <p>Awarded to the student with the highest AP Physics C Mechanics grade in the school.</p>
+        </div>
+        <div class="edu-item">
+          <h4>UBC Physics Olympics — 1st Place, Buoyancy Lab</h4>
+          <div class="meta">Awards</div>
+          <p>Achieved first place in the buoyancy lab event at UBC's 2026 Physics Olympics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-row">
+    <div>© 2026 Damon Burton</div>
+    <div><a href="mailto:dburton8511@gmail.com">dburton8511@gmail.com</a> — Vancouver, BC</div>
+  </div>
+</footer>
+
+<script>
+async function loadProjects() {
+  const container = document.getElementById('projects-container');
+  try {
+    const res = await fetch('data/projects.json');
+    if (!res.ok) throw new Error('Could not load projects.json');
+    const data = await res.json();
+    container.innerHTML = data.projects.map(renderCard).join('');
+  } catch (err) {
+    container.innerHTML = `<div class="load-msg">
+      Couldn't load projects.json — if you're viewing this file directly (file://),
+      that's expected: browsers block local file fetches. Run a local server
+      (e.g. <code>python3 -m http.server</code>) or view via GitHub Pages instead.
+    </div>`;
+    console.error(err);
+  }
+}
+
+function renderCard(p) {
+  const specs = p.specs.map(s => `
+    <div class="spec-row"><span class="spec-key">${s.key}</span><span class="spec-val">${s.value}</span></div>
+  `).join('');
+
+  const statusClass = p.statusType === 'progress' ? 'progress' : 'complete';
+
+  return `
+    <div class="card">
+      <div class="card-bar">
+        <span class="card-bar-title">${p.title}</span>
+        <span class="status ${statusClass}">${p.status}</span>
+      </div>
+      <div class="card-image">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"
+             onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-name">${p.name}</div>
+          <p class="card-desc">${p.description}</p>
+          <div class="card-highlight"><strong>${p.highlightLabel}</strong> ${p.highlight}</div>
+        </div>
+        <div class="spec-table">${specs}</div>
+      </div>
+    </div>
+  `;
+}
+
+loadProjects();
+</script>
+
+</body>
+</html>
