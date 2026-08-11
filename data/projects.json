@@ -3,7 +3,7 @@
     {
       "slug": "pill-dispenser",
       "title": "Smart Pill Dispenser",
-      "status": "Complete",
+      "status": "Senior Capstone",
       "statusType": "complete",
       "name": "Autonomous Pill Dispenser",
       "description": "A fully self-contained dispenser that releases medication at a scheduled time and confirms removal before silencing — designed, built, and tested independently, including a custom 3D-printed enclosure.",
@@ -48,7 +48,7 @@
     {
       "slug": "solar-oven",
       "title": "Solar Oven + Custom PCB",
-      "status": "Complete",
+      "status": "Personal Project",
       "statusType": "complete",
       "name": "Passive Solar Oven with Digital Readout",
       "description": "A passive solar oven using layered insulation and a clear top to concentrate heat, with a live temperature readout built around a custom PCB — my first designed-from-scratch board.",
@@ -88,7 +88,7 @@
     {
       "slug": "pole-climbing-bot",
       "title": "Pole-Climbing Robot",
-      "status": "UBC Physics Olympics 2026",
+      "status": "Competition Project",
       "statusType": "complete",
       "name": "Autonomous Pole-Climbing Robot",
       "description": "Led my school's build for UBC's Physics Olympics prebuild event: a motorized robot designed to climb a pipe carrying a 170g payload, with custom-printed gearing to boost torque.",
@@ -124,8 +124,8 @@
     {
       "slug": "solar-power-bank",
       "title": "Solar Power Bank",
-      "status": "In Progress",
-      "statusType": "inprogress",
+      "status": "Personal Project",
+      "statusType": "progress",
       "name": "Solar Power Bank",
       "description": "Power electronics project which uses an XL6009 buck-boost module to convert the 5.5V 6W output of a solar panel to a stable 5V, which is then routed to a power bank breakout board, charging 2 18650 batteries in parralel, which can be discharged to a phone later.",
       "highlightLabel": "Design note —",
