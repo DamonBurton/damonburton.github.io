@@ -148,7 +148,6 @@
           "key": "Charging",
           "value": "Power Bank IC Board"
         }
-        
       ],
       "writeup": [
         "The plan started out simple. I had a spare 12V solar panel lying around from a failed solar-boat project a few years ago, and a solar-powered phone charger seemed like a great idea for a project that would end up with something I could actually USE, learning about power electronics along the way.",
@@ -156,12 +155,10 @@
         "I attempted to make it work anyways, charging a power bank I bought. After plugging the solar panel into the power bank's input, the charging light lit up, but the wattage of the panel just wasn't sufficient, causing the input voltage to sag all the way from 17V to 2.4V; the bank would never even go up a single percent.",
         "I swapped out the old solar panel for a higher quality 6W panel from waveshare, and tried to charge my storebought anker power bank, however, it attempted to draw more current than the panel could supply, causing the panel voltage to sag (to 2.8V, higher than the previous 2.4V), the output volage to sag from the intended 5V to 4.5V, and the bank not to charge.",
         "My plan was to build my own battery pack to replace the anker bank using two 18650 lithium ion batteries with a power bank IC and breakout board. However, given that a prebought power bank couldn't be charged, I thought that a power bank I built myself would also try to draw too much current, causing the voltage to sag and the batteries not to charge.",
-        "Instead, I've ordered a dedicated module (CN3791) that charges lithium ion batteries directly from a solar panel output. The current design features soldering the batteries to both a power bank module and the CN3791, with a SPDT switch between them. This way, I can both charge the pack from the solar panel and discharge it through the power bank safely. I also plan on putting a switch on the common ground, allowing me to turn off the whole circuit when not in use. "
-        
+        "Instead, I've ordered a dedicated module (CN3791) that charges lithium ion batteries directly from a solar panel output. The current design features soldering the batteries to both a power bank module and the CN3791, with a SPDT switch between them. This way, I can both charge the pack from the solar panel and discharge it through the power bank safely. I also plan on putting a switch on the common ground, allowing me to turn off the whole circuit when not in use."
       ],
       "gallery": [],
       "links": []
     }
   ]
-  
 }
