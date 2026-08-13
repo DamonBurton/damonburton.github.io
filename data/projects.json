@@ -124,7 +124,7 @@
     {
       "slug": "solar-power-bank",
       "title": "Solar Power Bank",
-      "status": "Personal Project",
+      "status": "Personal Project (In Progress)",
       "statusType": "progress",
       "name": "Solar Power Bank",
       "description": "Power electronics project which uses an XL6009 buck-boost module to convert the 5.5V 6W output of a solar panel to a stable 5V, which is then routed to a power bank breakout board, charging 2 18650 batteries in parralel, which can be discharged to a phone later.",
@@ -148,16 +148,16 @@
           "key": "Charging",
           "value": "Power Bank IC Board"
         },
-        {
-          "key": "Enclosure",
-          "value": "PLA, Onshape CAD"
-        }
+        
       ],
       "writeup": [
         "The plan started out simple. I had a spare 12V solar panel lying around from a failed solar-boat project a few years ago, and a solar-powered phone charger seemed like a great idea for a project that would end up with something I could actually USE, learning about power electronics along the way.",
         "However, it wasn't that simple. Initially, I attempted to use a 12V 2W solar panel to charge a phone directly, however, this had a lot of issues. Firstly, modern iPhones are rather picky about their charging inputs - I needed to solder two CC resistors into my USB breakout board before the iphone would accept a charge, and if the output wasn't stable enough, the iphone would refuse to charge. Secondly, the solar panel I was using just wasn't strong enough. 12V was impressive, and it measued an open circuit voltage of over 17V in ideal sunlight, but the short circuit current (Isc) I measured was only 52mA, giving the panel a power output of 0.884W, less than half of the advertised 2W output, which was already very low.",
-        "I attempted to make it work anyways, charging a power bank I bought. After plugging the solar panel into the power bank's input, the charging light lit up, but the wattage of the panel just wasn't sufficient, causing the input voltage to sag all the way from 17V to 2.2V; the bank would never even go up a single percent.",
-        "I swapped out the old solar panel for a higher quality 6W panel from waveshare, and it charged my storebought power bank, leading me to improve my project further by creating my own power bank using a module I purchased and two Li 18650 batteries"
+        "I attempted to make it work anyways, charging a power bank I bought. After plugging the solar panel into the power bank's input, the charging light lit up, but the wattage of the panel just wasn't sufficient, causing the input voltage to sag all the way from 17V to 2.4V; the bank would never even go up a single percent.",
+        "I swapped out the old solar panel for a higher quality 6W panel from waveshare, and tried to charge my storebought anker power bank, however, it attempted to draw more current than the panel could supply, causing the panel voltage to sag (to 2.8V, higher than the previous 2.4V), the output volage to sag from the intended 5V to 4.5V, and the bank not to charge."
+        "My plan was to build my own battery pack to replace the anker bank using two 18650 lithium ion batteries with a power bank IC and breakout board. However, given that a prebought power bank couldn't be charged, I thought that a power bank I built myself would also try to draw too much current, causing the voltage to sag and the batteries not to charge."
+        "Instead, I've ordered a dedicated module (CN3791) that charges lithium ion batteries directly from a solar panel output. The current design features soldering the batteries to both a power bank module and the CN3791, with a SPDT switch between them. This way, I can both charge the pack from the solar panel and discharge it through the power bank safely. I also plan on putting a switch on the common ground, allowing me to turn off the whole circuit when not in use. 
+        
       ],
       "gallery": [],
       "links": []
